@@ -1,5 +1,6 @@
 package com.jrm.ForumAlura.models;
 
+import com.jrm.ForumAlura.dto.DadosAtualizacaoTopico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,6 +31,14 @@ public class Topico {
     @Column(name = "estado_topico")
     @Enumerated(EnumType.STRING)
     private EstadoTopico estadoTopico;
+
+
+    public void atualizarInformacoes(DadosAtualizacaoTopico dadosAtualizacaoTopico) {
+        this.titulo = (dadosAtualizacaoTopico.titulo()!=null)? dadosAtualizacaoTopico.titulo() : titulo;
+        this.mensagem = (dadosAtualizacaoTopico.mensagem()!=null)? dadosAtualizacaoTopico.mensagem() : mensagem;
+        this.dataCriacao = (dadosAtualizacaoTopico.data()!=null)? dadosAtualizacaoTopico.data(): dataCriacao;
+        this.estadoTopico = (dadosAtualizacaoTopico.estadoTopico()!=null)? dadosAtualizacaoTopico.estadoTopico(): estadoTopico;
+    }
 
     public Long getId() {
         return id;
